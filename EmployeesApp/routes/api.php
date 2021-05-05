@@ -22,4 +22,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //Route::get('/employee_list', 'admin\ManageEmployeeController@index');
 Route::get('/employee_list', 'admin\ManageEmployeeController@index');
+Route::post('/employee_create', 'admin\ManageEmployeeController@store');
 Route::get('/employee/{id}', 'admin\ManageEmployeeDetailController@show');
