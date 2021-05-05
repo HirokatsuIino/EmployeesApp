@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Employee;
+use App\EmployeeDetail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -11,12 +12,13 @@ class ManageEmployeeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
         //
-        $lists = Employee::all();
+        $lists = Employee::with('employee_details')->get();
+//        $lists = EmployeeDetail::with('employee_id');
         return response()->json([
             'message' => 'OK',
             'message-code' => 200,
