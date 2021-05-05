@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('/employee_list', 'admin\ManageEmployeeController');
+Route::apiResource('/employee/{id}', 'admin\ManageEmployeeDetailController');
