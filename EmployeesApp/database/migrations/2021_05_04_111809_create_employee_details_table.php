@@ -16,9 +16,11 @@ class CreateEmployeeDetailsTable extends Migration
         Schema::create('employee_details', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('employee_id'); //社員ID
-            $table->string('mail'); //メールアドレス
-            $table->string('tel'); //電話
-            $table->string('gender'); //性別
+            $table->string('last_name')->nullable();;; //名字
+            $table->string('first_name')->nullable();;; //名前
+            $table->string('mail')->unique()->nullable();;; //メールアドレス
+            $table->string('tel')->nullable();;; //電話
+            $table->string('gender')->default(0);; //性別 0:男性 1:女性
             $table->timestamps();
 
             $table->foreign('employee_id')
