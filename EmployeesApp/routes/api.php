@@ -17,5 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('/employee_list', 'admin\ManageEmployeeController');
-Route::apiResource('/employee/{id}', 'admin\ManageEmployeeDetailController');
+//Route::apiResource('/employee_list', 'admin\ManageEmployeeController');
+//Route::apiResource('/employee/{id}/{employee_id}', 'admin\ManageEmployeeDetailController');
+
+//Route::get('/employee_list', 'admin\ManageEmployeeController@index');
+Route::get('/employee_list', 'admin\ManageEmployeeController@index');
+Route::get('/employee/{id}', 'admin\ManageEmployeeDetailController@show');
