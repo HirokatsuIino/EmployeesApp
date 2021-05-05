@@ -14,15 +14,15 @@ class ManageEmployeeDetailController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index($id)
+    public function index()
     {
-        $lists = Employee::with('employee_details')->get();
-
-        return response()->json([
-            'message' => 'OK',
-            'message-code' => 200,
-            'data' => $lists
-        ], 200, [], JSON_UNESCAPED_UNICODE);
+//        $lists = Employee::with('employee_details')->get();
+//
+//        return response()->json([
+//            'message' => 'OK',
+//            'message-code' => 200,
+//            'data' => $lists
+//        ], 200, [], JSON_UNESCAPED_UNICODE);
 
     }
 
@@ -32,7 +32,8 @@ class ManageEmployeeDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+//    public function store(Request $request)
+    public function store($id)
     {
         //
     }
@@ -41,11 +42,18 @@ class ManageEmployeeDetailController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
         //
+        $lists = EmployeeDetail::find($id);
+
+        return response()->json([
+            'message' => 'OK',
+            'message-code' => 200,
+            'data' => $lists
+        ], 200, [], JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -58,6 +66,13 @@ class ManageEmployeeDetailController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $item = EmployeeDetail::find($id);
+        $item->last_name = request()->get("last_name");
+        $item->first_name = request()->get("first_name");
+        $item->mail = request()->get("mail");
+        $item->tel = request()->get("tel");
+        $item->gender = request()->get("gender");
+        $item->save();
     }
 
     /**
